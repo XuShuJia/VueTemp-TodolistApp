@@ -1,0 +1,132 @@
+:root,
+body[data-theme="light"] {
+  .button {
+    --color: #333333;
+    --colorActive: #0191ff;
+    --colorPrimary: #0191ff;
+    --colorPrimaryActive: #ffffff;
+    --colorDanger: #f00f00;
+    --colorDangerActive: #ffffff;
+    --colorDisabled: #dddddd;
+    --background: #ffffff;
+    --backgroundPrimaryActive: #0191ff;
+    --backgroundDangerActive: #f00f00;
+    --backgroundDisabled: #f2f2f2;
+    --borderColor: #dddddd;
+    --borderColorActive: #0191ff;
+    --borderColorPrimary: #0191ff;
+    --borderColorDanger: #f00f00;
+    --borderColorDisabled: #dddddd;
+  }
+}
+body[data-theme="dark"] {
+  .button {
+    --color: #ffffff;
+    --colorActive: #0191ff;
+    --colorPrimary: #0191ff;
+    --colorPrimaryActive: #ffffff;
+    --colorDanger: #f00f00;
+    --colorDangerActive: #ffffff;
+    --colorDisabled: #736d6d;
+    --background: #333333;
+    --backgroundPrimaryActive: #0191ff;
+    --backgroundDangerActive: #f00f00;
+    --backgroundDisabled: #636363;
+    --borderColor: #525252;
+    --borderColorActive: #0191ff;
+    --borderColorPrimary: #0191ff;
+    --borderColorDanger: #f00f00;
+    --borderColorDisabled: #736d6d;
+  }
+}
+.button {
+  display: inline-flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+  line-height: 1;
+  word-break: keep-all;
+  transition: all 0.3s ease, transform 0.2s ease;
+  color: var(--color);
+  background: var(--background);
+  border: 1px solid var(--borderColor);
+  &:active {
+    transform: scale(0.95);
+    color: var(--colorActive);
+    border-color: var(--borderColorActive);
+  }
+}
+
+.button-default {
+  padding: 10px 12px;
+  font-size: 14px;
+  border-radius: 5px;
+  :global {
+    .anticon {
+      margin-right: 5px;
+    }
+  }
+}
+.button-default.button-round {
+  border-radius: 35px;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+.button-large {
+  padding: 12px 16px;
+  font-size: 16px;
+  border-radius: 6px;
+  :global {
+    .anticon {
+      margin-right: 7px;
+    }
+  }
+}
+.button-large.button-round {
+  border-radius: 40px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+.button-small {
+  padding: 8px 10px;
+  font-size: 12px;
+  border-radius: 3px;
+  :global {
+    .anticon {
+      margin-right: 4px;
+    }
+  }
+}
+.button-small.button-round {
+  border-radius: 28px;
+  padding-left: 12px;
+  padding-right: 12px;
+}
+.button-primary {
+  color: var(--colorPrimary);
+  border-color: var(--borderColorPrimary);
+  &:active {
+    color: var(--colorPrimaryActive);
+    background: var(--backgroundPrimaryActive);
+  }
+}
+.button-danger {
+  color: var(--colorDanger);
+  border-color: var(--borderColorDanger);
+  &:active {
+    color: var(--colorDangerActive);
+    border-color: var(--borderColorDanger);
+    background: var(--backgroundDangerActive);
+  }
+}
+.button-disabled {
+  color: var(--colorDisabled);
+  background: var(--backgroundDisabled);
+  border-color: var(--borderColorDisabled);
+  &:active {
+    transform: scale(1);
+    color: var(--colorDisabled);
+    background: var(--backgroundDisabled);
+    border-color: var(--borderColorDisabled);
+  }
+}
