@@ -1,7 +1,23 @@
 <template>
   <div v-if="state.render" :class="containerClassNames">
     <div :class="styles.panel">
-      <div :class="styles['panel-header']"></div>
+      <div :class="styles['panel-header']">
+        <div
+          :class="styles['cancel-button']"
+          @touchstart="() => {}"
+          @click="handleCancelButtonClick"
+        >
+          {{ props.cancelButtonText }}
+        </div>
+        <div :class="styles['title']">{{ props.title }}</div>
+        <div
+          :class="styles['ok-button']"
+          @touchstart="() => {}"
+          @click="handleOkButtonClick"
+        >
+          {{ props.okButtonText }}
+        </div>
+      </div>
       <div :class="styles['panel-content']">
         <slot></slot>
       </div>
@@ -49,6 +65,18 @@ const handleClosePanel = () => {
       emit("close");
     }, 300);
   });
+};
+const handleCancelButtonClick = () => {
+  emit("cancel");
+  if (props.cancelButtonClose) {
+    emit("close");
+  }
+};
+const handleOkButtonClick = () => {
+  emit("ok");
+  if (props.okButtonClose) {
+    emit("close");
+  }
 };
 watchEffect(() => {
   if (props.commandMode) {

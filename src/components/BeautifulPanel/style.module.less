@@ -1,9 +1,11 @@
 :root,
 body[data-theme="light"] {
   --background: #ffffff;
+  --buttonColor: #0191ff;
 }
 body[data-theme="dark"] {
   --background: #1a1b1d;
+  --buttonColor: #ffee01;
 }
 .panel-container {
   position: absolute;
@@ -15,8 +17,6 @@ body[data-theme="dark"] {
   transition: all 0.3s ease;
   opacity: 0;
   background: rgba(0, 0, 0, 0.6);
-  -webkit-backdrop-filter: blur(5px);
-  backdrop-filter: blur(5px);
 }
 .panel {
   position: absolute;
@@ -34,10 +34,38 @@ body[data-theme="dark"] {
 .panel-header {
   width: 100%;
   height: 50px;
+  padding: 0 5px;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
 }
+.title {
+  font-size: 18px;
+  font-weight: bold;
+}
+.cancel-button,
+.ok-button {
+  font-size: 17px;
+  padding: 10px 15px;
+  opacity: 1;
+  letter-spacing: 1px;
+  color: var(--buttonColor);
+  transition: opacity 0.2s ease;
+  &:active {
+    opacity: 0.6;
+  }
+}
+.ok-button {
+  font-weight: bold;
+}
+
 .panel-content {
   width: 100%;
   height: calc(100% - 50px);
+  padding: 15px;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 .panel-container.panel-show {
