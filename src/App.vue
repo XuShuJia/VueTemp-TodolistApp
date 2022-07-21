@@ -15,36 +15,24 @@
         新待办事项
       </beautiful-button>
     </footer-bar>
-    <beautiful-panel
-      title="新待办事项"
-      :visible="state.showAddNewTodoPanel"
-      @close="handleAddNewToPanelClose"
-    >
-      <todo-edit-panel />
-    </beautiful-panel>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { reactive } from "vue";
 import { PlusOutlined } from "@ant-design/icons-vue";
 import HeaderBar from "./components/HeaderBar.vue";
 import TodoList from "./components/TodoList.vue";
 import TodoItem from "./components/TodoItem.vue";
 import FooterBar from "./components/FooterBar.vue";
 import BeautifulButton from "./components/BeautifulButton";
-import BeautifulPanel from "./components/BeautifulPanel";
 import TodoEditPanel from "./components/TodoEditPanel";
 
-const state = reactive({
-  showAddNewTodoPanel: false,
-});
-
 const handleAddNewTodo = () => {
-  state.showAddNewTodoPanel = true;
-};
-const handleAddNewToPanelClose = () => {
-  state.showAddNewTodoPanel = false;
+  TodoEditPanel({
+    todoItem: {
+      id: "",
+    },
+  });
 };
 </script>
 

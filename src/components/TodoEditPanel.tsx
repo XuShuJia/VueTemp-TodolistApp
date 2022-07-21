@@ -2,22 +2,31 @@
 import { defineComponent } from "vue";
 import BeautifulPanel, { createPanel } from "./BeautifulPanel";
 
-const TodoEditPanelCommand = createPanel(() => {
-  return defineComponent({
-    setup() {
-      return () => {
-        return <BeautifulPanel></BeautifulPanel>;
-      };
-    },
-  });
-});
+interface ITodoEditPanelProps {
+  todoItem: {
+    id: string;
+  };
+}
 
-const TodoEditPanel = defineComponent({
-  setup() {
-    return () => {
-      return <div>TodoEditPanel</div>;
-    };
-  },
-});
+const TodoEditPanelCommand = createPanel<ITodoEditPanelProps>(
+  ({ panelProps, command, payload }) => {
+    return defineComponent({
+      setup() {
+        return () => {
+          return (
+            <BeautifulPanel
+              {...panelProps}
+              onClose={() => {
+                command.doClose();
+              }}
+            >
+              {payload.todoItem.id}
+            </BeautifulPanel>
+          );
+        };
+      },
+    });
+  }
+);
 
-export default TodoEditPanel;
+export default TodoEditPanelCommand;

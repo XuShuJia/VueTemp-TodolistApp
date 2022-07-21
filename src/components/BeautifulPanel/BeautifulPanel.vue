@@ -27,7 +27,7 @@
 
 <script lang="ts" setup>
 import styles from "./style.module.less";
-import { reactive, watchEffect, nextTick, computed } from "vue";
+import { reactive, watchEffect, nextTick, computed, onMounted } from "vue";
 import { PanelProps } from "./interface";
 
 const props = defineProps(PanelProps);
@@ -79,14 +79,24 @@ const handleOkButtonClick = () => {
   }
 };
 watchEffect(() => {
-  if (props.commandMode) {
-    handleOpenPanel();
-  } else {
+  if (!props.__commandMode) {
     if (props.visible && !state.render && !state.show) {
       handleOpenPanel();
     }
     if (!props.visible && state.render && state.show) {
       handleClosePanel();
+    }
+  }
+});
+
+// CommandMode
+onMounted(() => {
+  if (props.__commandMode) {
+    handleOpenPanel();
+    if (props.__commandModeExportActionCommand) {
+      props.__commandModeExportActionCommand({
+        doClose: handleClosePanel,
+      });
     }
   }
 });
