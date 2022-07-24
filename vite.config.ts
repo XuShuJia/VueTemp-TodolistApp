@@ -14,8 +14,8 @@ export default defineConfig({
     },
   },
   server: {
-    // host: "192.168.0.106",
-    host: "192.168.0.101",
+    host: "192.168.0.106",
+    // host: "192.168.0.101",
     port: 8848,
   },
 });

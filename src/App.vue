@@ -1,14 +1,17 @@
 <template>
   <div :class="$style.container">
-    <header-bar></header-bar>
+    <header-bar />
     <todo-list>
-      <todo-item></todo-item>
-      <todo-item></todo-item>
-      <todo-item></todo-item>
-      <todo-item></todo-item>
-      <todo-item></todo-item>
-      <todo-item></todo-item>
+      <todo-item
+        v-for="item in todolist"
+        :key="item.id"
+        :title="item.title"
+        :message="item.message"
+        :complete="item.complete"
+        :deadline="item.deadline"
+      />
     </todo-list>
+    <div v-if="todolist.length === 0">暂无待办事项</div>
     <footer-bar>
       <beautiful-button round primary size="large" @click="handleAddNewTodo">
         <plus-outlined />
@@ -19,7 +22,9 @@
 </template>
 
 <script lang="ts" setup>
+import { ref } from "vue";
 import { PlusOutlined } from "@ant-design/icons-vue";
+import type { TTodoList } from "./interface";
 import HeaderBar from "./components/HeaderBar.vue";
 import TodoList from "./components/TodoList.vue";
 import TodoItem from "./components/TodoItem.vue";
@@ -27,10 +32,13 @@ import FooterBar from "./components/FooterBar.vue";
 import BeautifulButton from "./components/BeautifulButton";
 import TodoEditPanel from "./components/TodoEditPanel";
 
+const todolist = ref<TTodoList>([]);
+
 const handleAddNewTodo = () => {
   TodoEditPanel({
-    todoItem: {
-      id: "",
+    addNew: true,
+    onOk(newTodoItem) {
+      todolist.value.push(newTodoItem);
     },
   });
 };

@@ -1,0 +1,40 @@
+:root,
+body[data-theme="light"] {
+  .input {
+    --color: #333333;
+    --background: #f2f2f2;
+    --borderColor: #f2f2f2;
+    --borderColorFocus: #0191ff;
+  }
+}
+body[data-theme="dark"] {
+  .input {
+    --color: #dddddd;
+    --background: #333333;
+    --borderColor: #333333;
+    --borderColorFocus: #8e8e8e;
+  }
+}
+.input {
+  width: 100%;
+  outline: none;
+  color: var(--color);
+  background: var(--background);
+  border: 1px solid var(--borderColor);
+  margin-bottom: 15px;
+  &:focus {
+    border-color: var(--borderColorFocus);
+  }
+}
+.input-default {
+  padding: 8px 10px;
+  border-radius: 6px;
+}
+.input-large {
+  padding: 12px 14px;
+  border-radius: 8px;
+}
+.input-small {
+  padding: 6px 8px;
+  border-radius: 5px;
+}
